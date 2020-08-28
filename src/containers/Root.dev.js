@@ -6,6 +6,7 @@ import NewQuestionPage from './NewQuestionPage';
 import LeaderBoardPage from './LeaderBoardPage';
 import NotFoundPage from './NotFoundPage';
 import RouteWithNav from './RouteWithNav';
+import QuestionPage from './QuestionPage';
 
 const Root = () => (
   <div>
@@ -14,6 +15,7 @@ const Root = () => (
       <RouteWithNav exact path='/signin' component={SignInPage} />
       <RouteWithNav exact path='/add' component={NewQuestionPage} />
       <RouteWithNav exact path='/leaderboard' component={LeaderBoardPage} />
+      <RouteWithNav path='/questions/:id' component={QuestionPage} />
       <Route component={NotFoundPage} />
     </Switch>
   </div>
