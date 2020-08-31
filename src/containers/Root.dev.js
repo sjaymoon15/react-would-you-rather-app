@@ -7,9 +7,10 @@ import LeaderBoardPage from './LeaderBoardPage';
 import NotFoundPage from './NotFoundPage';
 import RouteWithNav from './RouteWithNav';
 import QuestionPage from './QuestionPage';
+import { Container } from 'semantic-ui-react';
 
 const Root = () => (
-  <div>
+  <Container>
     <Switch>
       <RouteWithNav exact path='/' component={HomePage} />
       <RouteWithNav exact path='/signin' component={SignInPage} />
@@ -18,7 +19,7 @@ const Root = () => (
       <RouteWithNav path='/questions/:id' component={QuestionPage} />
       <Route component={NotFoundPage} />
     </Switch>
-  </div>
+  </Container>
 );
 
 export default Root;
