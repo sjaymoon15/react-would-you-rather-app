@@ -5,10 +5,16 @@ import './index.css';
 import Root from './containers/Root';
 import * as serviceWorker from './serviceWorker';
 import 'semantic-ui-css/semantic.min.css';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import reducer from './reducers';
+
+const middleware = [thunk];
+const store = createStore(reducer, applyMiddleware(...middleware));
 
 ReactDOM.render(
   <BrowserRouter>
-    <Root />
+    <Root store={store} />
   </BrowserRouter>,
   document.getElementById('root')
 );
