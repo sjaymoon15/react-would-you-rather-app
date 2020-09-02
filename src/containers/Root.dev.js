@@ -8,18 +8,33 @@ import NotFoundPage from './NotFoundPage';
 import RouteWithNav from './RouteWithNav';
 import QuestionPage from './QuestionPage';
 import { Container } from 'semantic-ui-react';
+import PrivateRoute from './PrivateRoute';
+import { Provider } from 'react-redux';
 
-const Root = () => (
-  <Container>
-    <Switch>
-      <RouteWithNav exact path='/' component={HomePage} />
-      <RouteWithNav exact path='/signin' component={SignInPage} />
-      <RouteWithNav exact path='/add' component={NewQuestionPage} />
-      <RouteWithNav exact path='/leaderboard' component={LeaderBoardPage} />
-      <RouteWithNav path='/questions/:id' component={QuestionPage} />
-      <Route component={NotFoundPage} />
-    </Switch>
-  </Container>
+const Root = ({ store }) => (
+  <Provider store={store}>
+    <Container>
+      <Switch>
+        <RouteWithNav exact path='/' component={PrivateRoute(HomePage)} />
+        <RouteWithNav exact path='/signin' component={SignInPage} />
+        <RouteWithNav
+          exact
+          path='/add'
+          component={PrivateRoute(NewQuestionPage)}
+        />
+        <RouteWithNav
+          exact
+          path='/leaderboard'
+          component={PrivateRoute(LeaderBoardPage)}
+        />
+        <RouteWithNav
+          path='/questions/:id'
+          component={PrivateRoute(QuestionPage)}
+        />
+        <Route component={NotFoundPage} />
+      </Switch>
+    </Container>
+  </Provider>
 );
 
 export default Root;
