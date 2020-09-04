@@ -1,49 +1,30 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from '../actions';
 
 class Nav extends Component {
-  state = { activeItem: 'home' };
+  constructor(props) {
+    super(props);
+    this.logout = this.logout.bind(this);
+  }
 
-  handleItemClick = (e, { name }) => {
-    // handle auth condition and show signin/ signout and
-    // navigate differently
-    this.setState({ activeItem: name });
-  };
+  logout() {
+    this.props.logout();
+    this.props.history.push('/signin');
+  }
 
   render() {
-    const { activeItem } = this.state;
-
+    const { authedUser } = this.props;
     return (
-      <div>
+      <div className='nav-menu-container'>
         <Menu pointing secondary>
-          <Menu.Item
-            as={Link}
-            to='/'
-            name='home'
-            active={activeItem === 'home'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            as={Link}
-            to='/add'
-            name='newQuestion'
-            active={activeItem === 'newQuestion'}
-            onClick={this.handleItemClick}
-          />
-          <Menu.Item
-            as={Link}
-            to='/leaderboard'
-            name='leaderBoard'
-            active={activeItem === 'leaderBoard'}
-            onClick={this.handleItemClick}
-          />
+          <Menu.Item as={Link} to='/' name='home' />
+          <Menu.Item as={Link} to='/add' name='newQuestion' />
+          <Menu.Item as={Link} to='/leaderboard' name='leaderBoard' />
           <Menu.Menu position='right'>
-            <Menu.Item
-              name='logout'
-              active={activeItem === 'logout'}
-              onClick={this.handleItemClick}
-            />
+            {authedUser && <Menu.Item name='logout' onClick={this.logout} />}
           </Menu.Menu>
         </Menu>
       </div>
@@ -51,4 +32,8 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+const mapStateToProps = (state) => {
+  return { authedUser: state.auth.authedUser };
+};
+
+export default withRouter(connect(mapStateToProps, { logout })(Nav));

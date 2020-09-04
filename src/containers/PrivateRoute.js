@@ -13,22 +13,21 @@ export default (ChildComponent) => {
     }
 
     shouldNavigateAway() {
-      if (!this.props.auth) {
-        const { match, location, history } = this.props;
+      if (!this.props.authedUser) {
+        const { location, history } = this.props;
         let redirectUrl = '';
+
         if (location.pathname) {
           redirectUrl = redirectUrl + location.pathname.substring(1);
         }
+
         if (location.search) {
           redirectUrl = redirectUrl + location.search;
         }
 
-        console.log({ match, location });
-        if (redirectUrl) {
-          history.push(`/signin?redirectUrl=${redirectUrl}`);
-        } else {
-          history.push('/signin');
-        }
+        redirectUrl
+          ? history.push(`/signin?redirectUrl=${redirectUrl}`)
+          : history.push('/signin');
       }
     }
 
@@ -37,10 +36,10 @@ export default (ChildComponent) => {
     }
   }
 
-  function mapStateToProps(state) {
+  const mapStateToProps = (state) => {
     console.log('state in private route', state);
-    return { auth: state.auth.authedUser };
-  }
+    return { authedUser: state.auth.authedUser };
+  };
 
   return withRouter(connect(mapStateToProps)(ComposedComponent));
 };
