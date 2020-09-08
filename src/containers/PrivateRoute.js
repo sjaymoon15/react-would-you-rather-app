@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { setRedirectUrl } from '../actions';
 
 export default (ChildComponent) => {
   class ComposedComponent extends Component {
@@ -15,19 +16,12 @@ export default (ChildComponent) => {
     shouldNavigateAway() {
       if (!this.props.authedUser) {
         const { location, history } = this.props;
-        let redirectUrl = '';
 
         if (location.pathname) {
-          redirectUrl = redirectUrl + location.pathname.substring(1);
+          this.props.setRedirectUrl(location.pathname);
         }
 
-        if (location.search) {
-          redirectUrl = redirectUrl + location.search;
-        }
-
-        redirectUrl
-          ? history.push(`/signin?redirectUrl=${redirectUrl}`)
-          : history.push('/signin');
+        history.push('/signin');
       }
     }
 
@@ -38,8 +32,12 @@ export default (ChildComponent) => {
 
   const mapStateToProps = (state) => {
     console.log('state in private route', state);
-    return { authedUser: state.auth.authedUser };
+    return {
+      authedUser: state.auth.authedUser,
+    };
   };
 
-  return withRouter(connect(mapStateToProps)(ComposedComponent));
+  return withRouter(
+    connect(mapStateToProps, { setRedirectUrl })(ComposedComponent)
+  );
 };

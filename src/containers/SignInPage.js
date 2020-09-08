@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Dropdown, Button, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { fetchUsers, signIn } from '../actions';
+import { fetchUsers, signIn, setRedirectUrl } from '../actions';
 import { withRouter } from 'react-router-dom';
 
 class SignInPage extends Component {
@@ -13,6 +13,7 @@ class SignInPage extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.location.search);
     this.props.fetchUsers();
   }
 
@@ -24,9 +25,10 @@ class SignInPage extends Component {
     const { selectedUserId } = this.state;
 
     if (selectedUserId) {
-      const { users, history } = this.props;
+      const { users, history, redirectUrl } = this.props;
       this.props.signIn(users[selectedUserId]);
-      history.push('/');
+      this.props.setRedirectUrl('/');
+      history.push(redirectUrl);
     }
   }
 
@@ -69,8 +71,12 @@ const mapStateToProps = (state) => {
         image: { avatar: true, src: user.avatarURL },
       };
     }) || [];
-  return { users: state.users, usersForDropdown };
+  return {
+    users: state.users,
+    usersForDropdown,
+    redirectUrl: state.auth.redirectUrl,
+  };
 };
 export default withRouter(
-  connect(mapStateToProps, { fetchUsers, signIn })(SignInPage)
+  connect(mapStateToProps, { fetchUsers, signIn, setRedirectUrl })(SignInPage)
 );
