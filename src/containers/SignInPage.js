@@ -3,6 +3,7 @@ import { Card, Dropdown, Button, Divider } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { fetchUsers, signIn, setRedirectUrl } from '../actions';
 import { withRouter } from 'react-router-dom';
+import * as routes from '../constants/routes';
 
 class SignInPage extends Component {
   constructor(props) {
@@ -25,9 +26,9 @@ class SignInPage extends Component {
     const { selectedUserId } = this.state;
 
     if (selectedUserId) {
-      const { users, history, redirectUrl } = this.props;
-      this.props.signIn(users[selectedUserId]);
-      this.props.setRedirectUrl('/');
+      const { history, redirectUrl } = this.props;
+      this.props.signIn(selectedUserId);
+      this.props.setRedirectUrl(routes.HOME);
       history.push(redirectUrl);
     }
   }
@@ -72,7 +73,6 @@ const mapStateToProps = (state) => {
       };
     }) || [];
   return {
-    users: state.users,
     usersForDropdown,
     redirectUrl: state.auth.redirectUrl,
   };

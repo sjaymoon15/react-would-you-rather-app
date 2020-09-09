@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { setRedirectUrl } from '../actions';
+import { setRedirectUrl, signIn } from '../actions';
+import * as routes from '../constants/routes';
+import Cookies from 'universal-cookie';
+import { AUTH_COOKIE } from '../constants/variables';
+
+const cookies = new Cookies();
 
 export default (ChildComponent) => {
   class ComposedComponent extends Component {
@@ -15,13 +20,18 @@ export default (ChildComponent) => {
 
     shouldNavigateAway() {
       if (!this.props.authedUser) {
+        const authedUser = cookies.get(AUTH_COOKIE);
+        if (authedUser) {
+          this.props.signIn(authedUser);
+          return;
+        }
         const { location, history } = this.props;
 
         if (location.pathname) {
           this.props.setRedirectUrl(location.pathname);
         }
 
-        history.push('/signin');
+        history.push(routes.SIGN_IN);
       }
     }
 
@@ -38,6 +48,6 @@ export default (ChildComponent) => {
   };
 
   return withRouter(
-    connect(mapStateToProps, { setRedirectUrl })(ComposedComponent)
+    connect(mapStateToProps, { setRedirectUrl, signIn })(ComposedComponent)
   );
 };

@@ -10,25 +10,30 @@ import QuestionPage from './QuestionPage';
 import { Container } from 'semantic-ui-react';
 import PrivateRoute from './PrivateRoute';
 import { Provider } from 'react-redux';
+import * as routes from '../constants/routes';
 
 const Root = ({ store }) => (
   <Provider store={store}>
     <Container>
       <Switch>
-        <RouteWithNav exact path='/' component={PrivateRoute(HomePage)} />
-        <RouteWithNav exact path='/signin' component={SignInPage} />
         <RouteWithNav
           exact
-          path='/add'
+          path={routes.HOME}
+          component={PrivateRoute(HomePage)}
+        />
+        <RouteWithNav exact path={routes.SIGN_IN} component={SignInPage} />
+        <RouteWithNav
+          exact
+          path={routes.NEW_QUESTION}
           component={PrivateRoute(NewQuestionPage)}
         />
         <RouteWithNav
           exact
-          path='/leaderboard'
+          path={routes.LEADER_BOARD}
           component={PrivateRoute(LeaderBoardPage)}
         />
         <RouteWithNav
-          path='/questions/:id'
+          path={`${routes.QUESTIONS}/:id`}
           component={PrivateRoute(QuestionPage)}
         />
         <Route component={NotFoundPage} />
