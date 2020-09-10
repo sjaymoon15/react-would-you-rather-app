@@ -14,7 +14,6 @@ class SignInPage extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.location.search);
     this.props.fetchUsers();
   }
 
