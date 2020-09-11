@@ -62,15 +62,19 @@ class SignInPage extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const usersForDropdown =
-    Object.values(state.users).map((user) => {
+  const { users } = state;
+  let usersForDropdown = [];
+  if (users) {
+    usersForDropdown = Object.values(users).map((user) => {
       return {
         key: user.id,
         text: user.name,
         value: user.id,
         image: { avatar: true, src: user.avatarURL },
       };
-    }) || [];
+    });
+  }
+
   return {
     usersForDropdown,
     redirectUrl: state.auth.redirectUrl,

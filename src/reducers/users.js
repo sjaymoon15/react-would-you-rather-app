@@ -1,6 +1,6 @@
 import { RECEIVE_USERS } from '../actions';
 
-const users = (state = {}, action) => {
+const users = (state = null, action) => {
   switch (action.type) {
     case RECEIVE_USERS:
       return action.payload;
