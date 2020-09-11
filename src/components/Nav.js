@@ -46,7 +46,7 @@ class Nav extends Component {
             active={location.pathname === routes.LEADER_BOARD}
           />
 
-          {authedUser && users && (
+          {authedUser && users && users[authedUser] && (
             <Menu.Menu position='right'>
               <Menu.Item name={`Hello ${users[authedUser].name}`} />
               <Menu.Item name='logout' onClick={this.logout} />

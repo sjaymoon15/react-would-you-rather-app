@@ -41,7 +41,6 @@ export default (ChildComponent) => {
   }
 
   const mapStateToProps = (state) => {
-    console.log('state in private route', state);
     return {
       authedUser: state.auth.authedUser,
     };

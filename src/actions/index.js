@@ -9,6 +9,7 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const LOG_OUT = 'LOG_OUT';
 export const SET_REDIRECT_URL = 'SET_REDIRECT_URL';
+export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 
 export const fetchUsers = () => async (dispatch) => {
   const users = await API._getUsers();
@@ -29,3 +30,8 @@ export const setRedirectUrl = (redirectUrl) => ({
   type: SET_REDIRECT_URL,
   payload: redirectUrl,
 });
+
+export const fetchQuestions = () => async (dispatch) => {
+  const questions = await API._getQuestions();
+  dispatch({ type: RECEIVE_QUESTIONS, payload: questions });
+};
