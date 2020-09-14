@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Loader, Tab } from 'semantic-ui-react';
+import { Loader, Tab, Container } from 'semantic-ui-react';
 import { fetchQuestions, fetchUsers } from '../actions';
 import Question from '../components/Question';
 
@@ -22,19 +22,23 @@ class HomePage extends Component {
     }
 
     return (
-      <Tab panes={formatPanes({ unansweredQuestions, answeredQuestions })} />
+      <Container text>
+        <Tab
+          panes={formatPanes({ unansweredQuestions, answeredQuestions, users })}
+        />
+      </Container>
     );
   }
 }
 
-const formatPanes = ({ unansweredQuestions, answeredQuestions }) => {
+const formatPanes = ({ unansweredQuestions, answeredQuestions, users }) => {
   return [
     {
       menuItem: 'Unanswered Questions',
       render: () => (
         <Tab.Pane>
           {unansweredQuestions.map((question) => (
-            <Question question={question} />
+            <Question question={question} users={users} />
           ))}
         </Tab.Pane>
       ),
@@ -44,7 +48,7 @@ const formatPanes = ({ unansweredQuestions, answeredQuestions }) => {
       render: () => (
         <Tab.Pane>
           {answeredQuestions.map((question) => (
-            <Question question={question} />
+            <Question question={question} users={users} />
           ))}
         </Tab.Pane>
       ),
