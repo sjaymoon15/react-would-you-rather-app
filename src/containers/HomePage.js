@@ -38,7 +38,7 @@ const formatPanes = ({ unansweredQuestions, answeredQuestions, users }) => {
       render: () => (
         <Tab.Pane>
           {unansweredQuestions.map((question) => (
-            <Question question={question} users={users} />
+            <Question key={question.id} question={question} users={users} />
           ))}
         </Tab.Pane>
       ),
@@ -73,12 +73,12 @@ const mapStateToProps = (state) => {
     });
   }
 
-  console.log('state Home page', {
-    users,
-    questions,
-    unansweredQuestions,
-    answeredQuestions,
-  });
+  // console.log('state Home page', {
+  //   users,
+  //   questions,
+  //   unansweredQuestions,
+  //   answeredQuestions,
+  // });
   return {
     users,
     questions,

@@ -6,7 +6,7 @@ import NewQuestionPage from './NewQuestionPage';
 import LeaderBoardPage from './LeaderBoardPage';
 import NotFoundPage from './NotFoundPage';
 import RouteWithNav from './RouteWithNav';
-import QuestionPage from './QuestionPage';
+import PollDetailsPage from './PollDetailsPage';
 import { Container } from 'semantic-ui-react';
 import PrivateRoute from './PrivateRoute';
 import { Provider } from 'react-redux';
@@ -33,8 +33,8 @@ const Root = ({ store }) => (
           component={PrivateRoute(LeaderBoardPage)}
         />
         <RouteWithNav
-          path={`${routes.QUESTIONS}/:id`}
-          component={PrivateRoute(QuestionPage)}
+          path={`${routes.QUESTIONS}/:question_id`}
+          component={PrivateRoute(PollDetailsPage)}
         />
         <Route component={NotFoundPage} />
       </Switch>

@@ -59,7 +59,7 @@ class Nav extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('state in nav', state);
+  // console.log('state in nav', state);
   return { authedUser: state.auth.authedUser, users: state.users };
 };
 
