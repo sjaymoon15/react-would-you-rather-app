@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import NotFoundPage from '../containers/NotFoundPage';
 import { Loader } from 'semantic-ui-react';
 import UnansweredQuestion from '../components/UnansweredQuestion';
+import AnsweredQuestion from '../components/AnsweredQuestion';
 
 class PollDetailsPage extends Component {
   didUserAnswerQuestion(user, questionId) {
@@ -22,8 +23,6 @@ class PollDetailsPage extends Component {
   }
 
   handleSubmit = (qid, answer) => {
-    // function _saveQuestionAnswer({ authedUser, qid, answer })
-    console.log(this.props.authedUser, qid, answer);
     this.props.saveQeustionAnswer({
       authedUser: this.props.authedUser,
       qid,
@@ -51,7 +50,13 @@ class PollDetailsPage extends Component {
     const author = users[question.author];
 
     if (questionAnswered) {
-      return <div>answered</div>;
+      return (
+        <AnsweredQuestion
+          question={question}
+          author={author}
+          authedUser={authedUser}
+        />
+      );
     } else {
       return (
         <UnansweredQuestion

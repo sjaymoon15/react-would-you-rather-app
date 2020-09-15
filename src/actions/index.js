@@ -42,7 +42,7 @@ export const saveQeustionAnswer = ({ authedUser, qid, answer }) => async (
   dispatch
 ) => {
   dispatch({ type: SAVE_ANSWER_STARTED });
-  const res = await API._saveQuestionAnswer({ authedUser, qid, answer });
+  await API._saveQuestionAnswer({ authedUser, qid, answer });
   const questions = await API._getQuestions();
   dispatch({ type: RECEIVE_QUESTIONS, payload: questions });
   const users = await API._getUsers();

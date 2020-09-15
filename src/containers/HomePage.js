@@ -48,7 +48,7 @@ const formatPanes = ({ unansweredQuestions, answeredQuestions, users }) => {
       render: () => (
         <Tab.Pane>
           {answeredQuestions.map((question) => (
-            <Question question={question} users={users} />
+            <Question key={question.id} question={question} users={users} />
           ))}
         </Tab.Pane>
       ),
