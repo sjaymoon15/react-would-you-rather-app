@@ -4,7 +4,7 @@ import { Card, Image, Grid, Header, Progress } from 'semantic-ui-react';
 const AnsweredQuestion = ({ question, author, authedUser }) => {
   const optionOneCount = question.optionOne.votes.length;
   const optionTwoCount = question.optionTwo.votes.length;
-  const sumCounts = optionOneCount + optionTwoCount || 1;
+  const sumCounts = optionOneCount + optionTwoCount;
   const optionOneRatio = Math.round((optionOneCount / sumCounts) * 100);
   const optionTwoRatio = Math.round((optionTwoCount / sumCounts) * 100);
 
@@ -38,6 +38,9 @@ const AnsweredQuestion = ({ question, author, authedUser }) => {
                         authedUser
                       )}
                     />
+                    <Card.Header as='h4' textAlign='center'>
+                      {`${optionOneCount} out of ${sumCounts} votes`}
+                    </Card.Header>
                     {question.optionOne.votes.includes(authedUser) && (
                       <Card.Content extra textAlign='right'>
                         Your Answer
@@ -61,6 +64,9 @@ const AnsweredQuestion = ({ question, author, authedUser }) => {
                         authedUser
                       )}
                     />
+                    <Card.Header as='h4' textAlign='center'>
+                      {`${optionTwoCount} out of ${sumCounts} votes`}
+                    </Card.Header>
                     {question.optionTwo.votes.includes(authedUser) && (
                       <Card.Content extra textAlign='right'>
                         Your Answer
