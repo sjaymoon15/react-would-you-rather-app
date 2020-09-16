@@ -1,5 +1,7 @@
 import React from 'react';
 import { Card, Button, Image, Grid, Header } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+import * as routes from '../constants/routes';
 
 const Question = ({ question, users }) => {
   const author = users[question.author];
@@ -18,7 +20,13 @@ const Question = ({ question, users }) => {
               <Grid.Column width={13}>
                 <Header as='h3'>Would you rather</Header>
                 <Header as='h4'>...{question.optionOne.text}</Header>
-                <Button fluid basic color='green'>
+                <Button
+                  as={Link}
+                  fluid
+                  basic
+                  color='green'
+                  to={`${routes.QUESTIONS}/${question.id}`}
+                >
                   View Poll
                 </Button>
               </Grid.Column>
