@@ -73,12 +73,6 @@ const mapStateToProps = (state) => {
     });
   }
 
-  // console.log('state Home page', {
-  //   users,
-  //   questions,
-  //   unansweredQuestions,
-  //   answeredQuestions,
-  // });
   return {
     users,
     questions,
