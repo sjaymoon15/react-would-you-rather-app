@@ -1,6 +1,7 @@
 import * as API from '../utils/_DATA';
 import Cookies from 'universal-cookie';
 import { AUTH_COOKIE } from '../constants/variables';
+import * as routes from '../constants/routes';
 
 const cookies = new Cookies();
 
@@ -10,8 +11,8 @@ export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const LOG_OUT = 'LOG_OUT';
 export const SET_REDIRECT_URL = 'SET_REDIRECT_URL';
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
-export const SAVE_ANSWER_STARTED = 'SAVE_ANSWER_STARTED';
-export const SAVE_ANSWER_FINISHED = 'SAVE_ANSWER_FINISHED';
+export const SAVE_PROGRESS_STARTED = 'SAVE_PROGRESS_STARTED';
+export const SAVE_PROGRESS_FINISHED = 'SAVE_PROGRESS_FINISHED';
 
 export const fetchUsers = () => async (dispatch) => {
   const users = await API._getUsers();
@@ -41,11 +42,18 @@ export const fetchQuestions = () => async (dispatch) => {
 export const saveQeustionAnswer = ({ authedUser, qid, answer }) => async (
   dispatch
 ) => {
-  dispatch({ type: SAVE_ANSWER_STARTED });
+  dispatch({ type: SAVE_PROGRESS_STARTED });
   await API._saveQuestionAnswer({ authedUser, qid, answer });
   const questions = await API._getQuestions();
   dispatch({ type: RECEIVE_QUESTIONS, payload: questions });
   const users = await API._getUsers();
   dispatch({ type: RECEIVE_USERS, payload: users });
-  dispatch({ type: SAVE_ANSWER_FINISHED });
+  dispatch({ type: SAVE_PROGRESS_FINISHED });
+};
+
+export const saveQuestion = (question, history) => async (dispatch) => {
+  dispatch({ type: SAVE_PROGRESS_STARTED });
+  await API._saveQuestion(question);
+  dispatch({ type: SAVE_PROGRESS_FINISHED });
+  history.push(routes.HOME);
 };

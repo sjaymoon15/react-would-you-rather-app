@@ -1,10 +1,10 @@
-import { SAVE_ANSWER_FINISHED, SAVE_ANSWER_STARTED } from '../actions';
+import { SAVE_PROGRESS_FINISHED, SAVE_PROGRESS_STARTED } from '../actions';
 
 const saveInProgress = (state = false, action) => {
   switch (action.type) {
-    case SAVE_ANSWER_STARTED:
+    case SAVE_PROGRESS_STARTED:
       return true;
-    case SAVE_ANSWER_FINISHED:
+    case SAVE_PROGRESS_FINISHED:
       return false;
     default:
       return state;

@@ -6,21 +6,16 @@ import { logout, fetchUsers } from '../actions';
 import * as routes from '../constants/routes';
 
 class Nav extends Component {
-  constructor(props) {
-    super(props);
-    this.logout = this.logout.bind(this);
-  }
-
   componentDidMount() {
     if (!this.props.users) {
       this.props.fetchUsers();
     }
   }
 
-  logout() {
+  logout = () => {
     this.props.logout();
     this.props.history.push(routes.SIGN_IN);
-  }
+  };
 
   render() {
     const { authedUser, location, users } = this.props;
@@ -59,7 +54,6 @@ class Nav extends Component {
 }
 
 const mapStateToProps = (state) => {
-  // console.log('state in nav', state);
   return { authedUser: state.auth.authedUser, users: state.users };
 };
 

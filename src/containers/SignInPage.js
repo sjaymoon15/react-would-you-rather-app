@@ -6,31 +6,25 @@ import { withRouter } from 'react-router-dom';
 import * as routes from '../constants/routes';
 
 class SignInPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { selectedUserId: '' };
-    this.onChange = this.onChange.bind(this);
-    this.onClick = this.onClick.bind(this);
-  }
+  state = { selectedUserId: '' };
 
   componentDidMount() {
     this.props.fetchUsers();
   }
 
-  onChange(event, data) {
+  onChange = (event, data) => {
     this.setState(() => ({ selectedUserId: data.value }));
-  }
+  };
 
-  onClick(event, data) {
+  onClick = (event, data) => {
     const { selectedUserId } = this.state;
-
     if (selectedUserId) {
       const { history, redirectUrl } = this.props;
       this.props.signIn(selectedUserId);
       this.props.setRedirectUrl(routes.HOME);
       history.push(redirectUrl);
     }
-  }
+  };
 
   render() {
     const { usersForDropdown } = this.props;
