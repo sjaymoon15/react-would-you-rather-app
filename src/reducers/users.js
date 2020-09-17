@@ -6,8 +6,6 @@ const users = (state = null, action) => {
       return action.payload;
     case SAVE_QUESTION_ANSWER_USERS:
       const { authedUser, qid, answer } = action.payload;
-      console.log('state in users reducer', state);
-
       return {
         ...state,
         [authedUser]: {
