@@ -71,6 +71,7 @@ class PollDetailsPage extends Component {
 
 const mapStateToProps = (state) => {
   const { users, questions, auth, saveInProgress } = state;
+  console.log('DEtails page state', state);
   return {
     authedUser: auth.authedUser,
     users,
