@@ -1,6 +1,7 @@
 # React Would You Rather App Project
 
 This is the Would You Rather App project for Udacity's React Nanodegree Course.
+React, Redux, React Router, and Semantic-ui used for this project.
 
 ## Install and Launch the project
 
