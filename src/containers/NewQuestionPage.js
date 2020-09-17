@@ -10,7 +10,6 @@ import {
 import { connect } from 'react-redux';
 import { saveQuestion } from '../actions';
 import { withRouter } from 'react-router-dom';
-import * as routes from '../constants/routes';
 
 class NewQuestionPage extends Component {
   state = {
