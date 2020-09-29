@@ -115,6 +115,8 @@ let questions = {
   },
 };
 
+export { users, questions };
+
 function generateUID() {
   return (
     Math.random().toString(36).substring(2, 15) +

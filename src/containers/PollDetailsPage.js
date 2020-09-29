@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchQuestions, fetchUsers, saveQeustionAnswer } from '../actions';
+import { fetchQuestions, fetchUsers, saveQuestionAnswer } from '../actions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import NotFoundPage from '../containers/NotFoundPage';
@@ -23,7 +23,7 @@ class PollDetailsPage extends Component {
   }
 
   handleSubmit = (qid, answer) => {
-    this.props.saveQeustionAnswer({
+    this.props.saveQuestionAnswer({
       authedUser: this.props.authedUser,
       qid,
       answer,
@@ -80,7 +80,7 @@ const mapStateToProps = (state) => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, { fetchQuestions, fetchUsers, saveQeustionAnswer })(
+  connect(mapStateToProps, { fetchQuestions, fetchUsers, saveQuestionAnswer })(
     PollDetailsPage
   )
 );
