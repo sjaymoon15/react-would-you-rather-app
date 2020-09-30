@@ -1,6 +1,11 @@
-import { SIGN_IN, AUTH_ERROR, LOG_OUT, SET_REDIRECT_URL } from '../actions';
+import {
+  SIGN_IN,
+  AUTH_ERROR,
+  LOG_OUT,
+  SET_REDIRECT_URL,
+} from '../actions/types';
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   authedUser: '',
   redirectUrl: '/',
   errorMessage: '',

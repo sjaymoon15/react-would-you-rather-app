@@ -1,4 +1,4 @@
-import { RECEIVE_USERS, SAVE_QUESTION_ANSWER_USERS } from '../actions';
+import { RECEIVE_USERS, SAVE_QUESTION_ANSWER_USERS } from '../actions/types';
 
 const users = (state = null, action) => {
   switch (action.type) {
