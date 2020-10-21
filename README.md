@@ -3,7 +3,8 @@
 This is the Would You Rather App project for Udacity's React Nanodegree Course.
 
 ## Technologies used
-React, Redux, React Router, and Semantic-ui used for this project.
+
+React, Redux, React Router, Semantic-ui, Jest, Cypress used for this project.
 
 ## Install and Launch the project
 
@@ -12,7 +13,16 @@ React, Redux, React Router, and Semantic-ui used for this project.
 - install all project dependencies with `npm install`
 - start the development server with `npm start`
 
+## Run unit tests
+
+- `npm run test`
+
+## Run cypress integration tests
+
+- `npm run cypress:open`
+
 ## App screenshots
+
 ![Screen Shot 2020-09-17 at 12 42 50 PM](https://user-images.githubusercontent.com/15459075/93508708-575a7780-f8e4-11ea-9e60-a4b9df39be2b.png)
 ![Screen Shot 2020-09-17 at 12 43 12 PM](https://user-images.githubusercontent.com/15459075/93508710-588ba480-f8e4-11ea-8668-e8b757b48651.png)
 ![Screen Shot 2020-09-17 at 12 43 20 PM](https://user-images.githubusercontent.com/15459075/93508713-59243b00-f8e4-11ea-802a-fcf1a133c324.png)
