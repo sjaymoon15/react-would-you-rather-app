@@ -12,18 +12,20 @@ describe('The Home Page', () => {
   });
 
   it('shows default active tab: Unanswered Questions', () => {
-    const activeTabAnchor = cy.get('div.ui.attached.tabular.menu a:first');
-    activeTabAnchor.should('have.class', 'active');
-    activeTabAnchor.contains('Unanswered Questions');
+    const unansweredQuestionTab = cy.get(
+      'div.ui.attached.tabular.menu a:first'
+    );
+    unansweredQuestionTab.should('have.class', 'active');
+    unansweredQuestionTab.contains('Unanswered Questions');
   });
 
   it('clicks Answered Questions tab', () => {
-    const activeTabAnchor = cy.get(
+    const answeredQuestionTab = cy.get(
       'div.ui.attached.tabular.menu a:nth-child(2)'
     );
-    activeTabAnchor.should('not.have.class', 'active');
-    activeTabAnchor.click();
-    activeTabAnchor.should('have.class', 'active');
+    answeredQuestionTab.should('not.have.class', 'active');
+    answeredQuestionTab.click();
+    answeredQuestionTab.should('have.class', 'active');
   });
 
   it('clicks one poll and navigates to Poll Details Page', () => {
