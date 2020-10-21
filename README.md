@@ -1,6 +1,6 @@
 # React Would You Rather App Project
 
-This is the Would You Rather App project for Udacity's React Nanodegree Course.
+This is the Would You Rather App project to practice React, Redux, and Testing.
 
 ## Technologies used
 
