@@ -83,6 +83,7 @@ class NewQuestionPage extends Component {
 
             <Form onSubmit={this.handleSubmit}>
               <Form.Input
+                id='option-one'
                 fluid
                 placeholder='Enter Option One Text Here'
                 value={this.state.optionOneText}
@@ -91,6 +92,7 @@ class NewQuestionPage extends Component {
               />
               <Divider horizontal>Or</Divider>
               <Form.Input
+                id='option-two'
                 fluid
                 placeholder='Enter Option Two Text Here'
                 value={this.state.optionTwoText}
@@ -98,7 +100,13 @@ class NewQuestionPage extends Component {
                 error={this.state.optionTwoError}
               />
 
-              <Button type='submit' fluid basic color='green'>
+              <Button
+                type='submit'
+                fluid
+                basic
+                color='green'
+                id='new-question-submit-button'
+              >
                 Submit
               </Button>
             </Form>
