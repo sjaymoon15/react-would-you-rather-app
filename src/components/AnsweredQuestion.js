@@ -9,7 +9,7 @@ const AnsweredQuestion = ({ question, author, authedUser }) => {
   const optionTwoRatio = Math.round((optionTwoCount / sumCounts) * 100);
 
   return (
-    <Card.Group>
+    <Card.Group data-test='component-answered-question'>
       <Card fluid>
         <Card.Content>
           <Card.Header>Asked by {author.name}</Card.Header>
