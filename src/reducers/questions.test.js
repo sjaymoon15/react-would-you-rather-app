@@ -3,12 +3,10 @@ import {
   RECEIVE_QUESTIONS,
   SAVE_QUESTION_ANSWER_QUESTIONS,
 } from '../actions/types';
-import { questions } from '../utils/_DATA';
+import { questions, authedUser, qid } from '../utils/_DATA';
 
 describe('questions reducer', () => {
   const INITIAL_STATE = null;
-  const authedUser = 'sarahedo';
-  const qid = 'vthrdm985a262al8qx3do';
   const answer = 'optionOne';
 
   it('should return the initial state', () => {

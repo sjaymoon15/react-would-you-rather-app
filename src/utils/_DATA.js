@@ -115,8 +115,6 @@ let questions = {
   },
 };
 
-export { users, questions };
-
 function generateUID() {
   return (
     Math.random().toString(36).substring(2, 15) +
@@ -205,3 +203,8 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
     }, 500);
   });
 }
+
+// for testing
+export const authedUser = 'sarahedo';
+export const qid = 'vthrdm985a262al8qx3do';
+export { users, questions };

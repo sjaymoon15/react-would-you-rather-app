@@ -6,7 +6,7 @@ import * as routes from '../constants/routes';
 const Question = ({ question, users }) => {
   const author = users[question.author];
   return (
-    <Card fluid>
+    <Card fluid data-test='component-question'>
       <Card.Content>
         <Card.Header>{author.name} asks:</Card.Header>
       </Card.Content>
