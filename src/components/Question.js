@@ -8,7 +8,9 @@ const Question = ({ question, users }) => {
   return (
     <Card fluid data-test='component-question'>
       <Card.Content>
-        <Card.Header>{author.name} asks:</Card.Header>
+        <Card.Header data-test='component-question-header'>
+          {author.name} asks:
+        </Card.Header>
       </Card.Content>
       <Card.Content>
         <Grid divided>
@@ -20,6 +22,7 @@ const Question = ({ question, users }) => {
               <Header as='h3'>Would you rather</Header>
               <Header as='h4'>...{question.optionOne.text}</Header>
               <Button
+                data-test='component-question-button'
                 as={Link}
                 fluid
                 basic
