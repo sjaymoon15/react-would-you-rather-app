@@ -4,7 +4,7 @@ This is the Would You Rather App project to practice React, Redux, and Testing.
 
 ## Technologies used
 
-React, Redux, React Router, Semantic-ui, Jest, Cypress used for this project.
+React, Redux, React Router, Semantic-ui, Jest, Enzyme, and Cypress are used for this project.
 
 ## Install and Launch the project
 
