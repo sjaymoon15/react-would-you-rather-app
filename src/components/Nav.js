@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { logout, fetchUsers } from '../actions';
 import * as routes from '../constants/routes';
 
-class Nav extends Component {
+export class UnconnectedNav extends Component {
   componentDidMount() {
     if (!this.props.users) {
       this.props.fetchUsers();
@@ -23,18 +23,21 @@ class Nav extends Component {
       <div className='nav-menu-container'>
         <Menu pointing secondary>
           <Menu.Item
+            data-test='nav-link-home'
             as={Link}
             to={routes.HOME}
             name='home'
             active={location.pathname === routes.HOME}
           />
           <Menu.Item
+            data-test='nav-link-new-question'
             as={Link}
             to={routes.NEW_QUESTION}
             name='newQuestion'
             active={location.pathname === routes.NEW_QUESTION}
           />
           <Menu.Item
+            data-test='nav-link-leader-board'
             as={Link}
             to={routes.LEADER_BOARD}
             name='leaderBoard'
@@ -44,7 +47,11 @@ class Nav extends Component {
           {authedUser && users && users[authedUser] && (
             <Menu.Menu position='right'>
               <Menu.Item name={`Hello ${users[authedUser].name}`} />
-              <Menu.Item name='logout' onClick={this.logout} />
+              <Menu.Item
+                data-test='nav-link-logout'
+                name='logout'
+                onClick={this.logout}
+              />
             </Menu.Menu>
           )}
         </Menu>
@@ -57,6 +64,7 @@ const mapStateToProps = (state) => {
   return { authedUser: state.auth.authedUser, users: state.users };
 };
 
-export default withRouter(
-  connect(mapStateToProps, { logout, fetchUsers })(Nav)
+const Nav = withRouter(
+  connect(mapStateToProps, { logout, fetchUsers })(UnconnectedNav)
 );
+export default Nav;
