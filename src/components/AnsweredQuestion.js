@@ -2,17 +2,19 @@ import React from 'react';
 import { Card, Image, Grid, Header, Progress } from 'semantic-ui-react';
 
 const AnsweredQuestion = ({ question, author, authedUser }) => {
-  const optionOneCount = question.optionOne.votes.length;
-  const optionTwoCount = question.optionTwo.votes.length;
-  const sumCounts = optionOneCount + optionTwoCount;
-  const optionOneRatio = Math.round((optionOneCount / sumCounts) * 100);
-  const optionTwoRatio = Math.round((optionTwoCount / sumCounts) * 100);
+  const {
+    optionOneCount,
+    optionTwoCount,
+    sumCounts,
+    optionOneRatio,
+    optionTwoRatio,
+  } = getQuestionOptionsInfo(question);
 
   return (
     <Card.Group data-test='component-answered-question'>
       <Card fluid>
         <Card.Content>
-          <Card.Header>Asked by {author.name}</Card.Header>
+          <Card.Header data-test='answered-question-asked-by-header'>Asked by {author.name}</Card.Header>
         </Card.Content>
         <Card.Content>
           <Grid divided>
@@ -27,7 +29,7 @@ const AnsweredQuestion = ({ question, author, authedUser }) => {
                   color={setColorBasedOnAnswer(question.optionOne, authedUser)}
                 >
                   <Card.Content>
-                    <Card.Header as='h3'>
+                    <Card.Header as='h3' data-test='answered-question-option-one'>
                       Would you rather {question.optionOne.text}
                     </Card.Header>
                     <Progress
@@ -53,7 +55,7 @@ const AnsweredQuestion = ({ question, author, authedUser }) => {
                   color={setColorBasedOnAnswer(question.optionTwo, authedUser)}
                 >
                   <Card.Content>
-                    <Card.Header as='h3'>
+                    <Card.Header as='h3' data-test='answered-question-option-two'>
                       Would you rather {question.optionTwo.text}
                     </Card.Header>
                     <Progress
@@ -83,8 +85,24 @@ const AnsweredQuestion = ({ question, author, authedUser }) => {
   );
 };
 
-const setColorBasedOnAnswer = (option, authedUser) => {
+export const setColorBasedOnAnswer = (option, authedUser) => {
   return option.votes.includes(authedUser) ? 'green' : 'yellow';
+};
+
+export const getQuestionOptionsInfo = (question) => {
+  const optionOneCount = question.optionOne.votes.length;
+  const optionTwoCount = question.optionTwo.votes.length;
+  const sumCounts = optionOneCount + optionTwoCount;
+  const optionOneRatio = Math.round((optionOneCount / sumCounts) * 100);
+  const optionTwoRatio = Math.round((optionTwoCount / sumCounts) * 100);
+
+  return {
+    optionOneCount,
+    optionTwoCount,
+    sumCounts,
+    optionOneRatio,
+    optionTwoRatio,
+  };
 };
 
 export default AnsweredQuestion;
