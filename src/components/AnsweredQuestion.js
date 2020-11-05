@@ -14,7 +14,9 @@ const AnsweredQuestion = ({ question, author, authedUser }) => {
     <Card.Group data-test='component-answered-question'>
       <Card fluid>
         <Card.Content>
-          <Card.Header data-test='answered-question-asked-by-header'>Asked by {author.name}</Card.Header>
+          <Card.Header data-test='answered-question-asked-by-header'>
+            Asked by {author.name}
+          </Card.Header>
         </Card.Content>
         <Card.Content>
           <Grid divided>
@@ -29,7 +31,10 @@ const AnsweredQuestion = ({ question, author, authedUser }) => {
                   color={setColorBasedOnAnswer(question.optionOne, authedUser)}
                 >
                   <Card.Content>
-                    <Card.Header as='h3' data-test='answered-question-option-one'>
+                    <Card.Header
+                      as='h3'
+                      data-test='answered-question-option-one'
+                    >
                       Would you rather {question.optionOne.text}
                     </Card.Header>
                     <Progress
@@ -44,7 +49,11 @@ const AnsweredQuestion = ({ question, author, authedUser }) => {
                       {`${optionOneCount} out of ${sumCounts} votes`}
                     </Card.Header>
                     {question.optionOne.votes.includes(authedUser) && (
-                      <Card.Content extra textAlign='right'>
+                      <Card.Content
+                        extra
+                        textAlign='right'
+                        data-test='answered-option-one-your-answer'
+                      >
                         Your Answer
                       </Card.Content>
                     )}
@@ -55,7 +64,10 @@ const AnsweredQuestion = ({ question, author, authedUser }) => {
                   color={setColorBasedOnAnswer(question.optionTwo, authedUser)}
                 >
                   <Card.Content>
-                    <Card.Header as='h3' data-test='answered-question-option-two'>
+                    <Card.Header
+                      as='h3'
+                      data-test='answered-question-option-two'
+                    >
                       Would you rather {question.optionTwo.text}
                     </Card.Header>
                     <Progress
@@ -70,7 +82,11 @@ const AnsweredQuestion = ({ question, author, authedUser }) => {
                       {`${optionTwoCount} out of ${sumCounts} votes`}
                     </Card.Header>
                     {question.optionTwo.votes.includes(authedUser) && (
-                      <Card.Content extra textAlign='right'>
+                      <Card.Content
+                        extra
+                        textAlign='right'
+                        data-test='answered-option-two-your-answer'
+                      >
                         Your Answer
                       </Card.Content>
                     )}

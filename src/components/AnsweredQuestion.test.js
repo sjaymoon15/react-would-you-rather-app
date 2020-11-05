@@ -44,26 +44,22 @@ describe('AnsweredQuestion', () => {
     const question = defaultProps.question;
     expect(component.text()).toBe(`Would you rather ${question.optionTwo.text}`)
   })
+
+  it(`shows the authedUser's answer`, () => {
+    const authedUser = 'johndoe'; // overwrites authedUser for testing.
+    wrapper = setup({authedUser});
+    const optionOneYourAnswerComponent = findByTestAttr(wrapper, 'answered-option-one-your-answer');
+    const optionTwoYourAnswerComponent = findByTestAttr(wrapper, 'answered-option-two-your-answer');
+    
+    expect(optionOneYourAnswerComponent.length).toBe(0);
+    expect(optionTwoYourAnswerComponent.length).toBe(1);
+  })
 });
 
 describe('setColorBasedOnAnswer', () => {
   it('sets color based on answer', () => {
-    const question = {
-      id: 'vthrdm985a262al8qx3do',
-      author: 'tylermcginnis',
-      timestamp: 1489579767190,
-      optionOne: {
-        votes: ['tylermcginnis'],
-        text: 'find $50 yourself',
-      },
-      optionTwo: {
-        votes: ['johndoe'],
-        text: 'have your best friend find $500',
-      },
-    }
-
     const authedUser = 'johndoe';
-
+    const question = defaultProps.question;
     const optionOneResult = setColorBasedOnAnswer(question.optionOne, authedUser);
     const optionTwoResult = setColorBasedOnAnswer(question.optionTwo, authedUser);
     
