@@ -2,7 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { findByTestAttr } from '../utils/testUtils';
-import AnsweredQuestion, { setColorBasedOnAnswer, getQuestionOptionsInfo } from './AnsweredQuestion';
+import AnsweredQuestion, {
+  setColorBasedOnAnswer,
+  getQuestionOptionsInfo,
+} from './AnsweredQuestion';
 import { users, questions, qid, authedUser } from '../utils/_DATA';
 
 const defaultProps = {
@@ -20,7 +23,7 @@ describe('AnsweredQuestion', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = setup();
-  })
+  });
 
   it('renders without error', () => {
     const component = findByTestAttr(wrapper, 'component-answered-question');
@@ -28,41 +31,66 @@ describe('AnsweredQuestion', () => {
   });
 
   it('renders correct header', () => {
-    const component = findByTestAttr(wrapper, 'answered-question-asked-by-header').dive();
+    const component = findByTestAttr(
+      wrapper,
+      'answered-question-asked-by-header'
+    ).dive();
     const author = defaultProps.author;
     expect(component.text()).toBe(`Asked by ${author.name}`);
-  })
+  });
 
   it('renders option one text', () => {
-    const component = findByTestAttr(wrapper, 'answered-question-option-one').dive();
+    const component = findByTestAttr(
+      wrapper,
+      'answered-question-option-one'
+    ).dive();
     const question = defaultProps.question;
-    expect(component.text()).toBe(`Would you rather ${question.optionOne.text}`)
-  })
+    expect(component.text()).toBe(
+      `Would you rather ${question.optionOne.text}`
+    );
+  });
 
   it('renders option two text', () => {
-    const component = findByTestAttr(wrapper, 'answered-question-option-two').dive();
+    const component = findByTestAttr(
+      wrapper,
+      'answered-question-option-two'
+    ).dive();
     const question = defaultProps.question;
-    expect(component.text()).toBe(`Would you rather ${question.optionTwo.text}`)
-  })
+    expect(component.text()).toBe(
+      `Would you rather ${question.optionTwo.text}`
+    );
+  });
 
   it(`shows the authedUser's answer`, () => {
     const authedUser = 'johndoe'; // overwrites authedUser for testing.
-    wrapper = setup({authedUser});
-    const optionOneYourAnswerComponent = findByTestAttr(wrapper, 'answered-option-one-your-answer');
-    const optionTwoYourAnswerComponent = findByTestAttr(wrapper, 'answered-option-two-your-answer');
-    
+    wrapper = setup({ authedUser });
+    const optionOneYourAnswerComponent = findByTestAttr(
+      wrapper,
+      'answered-option-one-your-answer'
+    );
+    const optionTwoYourAnswerComponent = findByTestAttr(
+      wrapper,
+      'answered-option-two-your-answer'
+    );
+
     expect(optionOneYourAnswerComponent.length).toBe(0);
     expect(optionTwoYourAnswerComponent.length).toBe(1);
-  })
+  });
 });
 
 describe('setColorBasedOnAnswer', () => {
   it('sets color based on answer', () => {
     const authedUser = 'johndoe';
     const question = defaultProps.question;
-    const optionOneResult = setColorBasedOnAnswer(question.optionOne, authedUser);
-    const optionTwoResult = setColorBasedOnAnswer(question.optionTwo, authedUser);
-    
+    const optionOneResult = setColorBasedOnAnswer(
+      question.optionOne,
+      authedUser
+    );
+    const optionTwoResult = setColorBasedOnAnswer(
+      question.optionTwo,
+      authedUser
+    );
+
     expect(optionOneResult).toBe('yellow');
     expect(optionTwoResult).toBe('green');
   });
@@ -82,7 +110,7 @@ describe('getQuestionOptionsInfo', () => {
         votes: ['johndoe'],
         text: 'have your best friend find $500',
       },
-    }
+    };
 
     const {
       optionOneCount,
@@ -90,8 +118,8 @@ describe('getQuestionOptionsInfo', () => {
       sumCounts,
       optionOneRatio,
       optionTwoRatio,
-    } = getQuestionOptionsInfo(question);  
-    
+    } = getQuestionOptionsInfo(question);
+
     expect(optionOneCount).toBe(2);
     expect(optionTwoCount).toBe(1);
     expect(sumCounts).toBe(3);
@@ -99,6 +127,3 @@ describe('getQuestionOptionsInfo', () => {
     expect(optionTwoRatio).toBe(33);
   });
 });
-
-
-

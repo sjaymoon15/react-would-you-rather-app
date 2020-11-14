@@ -16,12 +16,14 @@ class UnansweredQuestion extends Component {
   };
 
   render() {
-    const { question, author } = this.props;
+    const { question, author, handleSubmit } = this.props;
     return (
-      <Card.Group>
+      <Card.Group data-test='component-unanswered-question'>
         <Card fluid>
           <Card.Content>
-            <Card.Header>{author.name} asks:</Card.Header>
+            <Card.Header data-test='unanswered-question-author'>
+              {author.name} asks:
+            </Card.Header>
           </Card.Content>
           <Card.Content>
             <Grid divided>
@@ -34,6 +36,7 @@ class UnansweredQuestion extends Component {
                   <Form>
                     <Form.Field>
                       <Radio
+                        data-test='unanswered-question-radio-option-one'
                         label={`${question.optionOne.text}`}
                         name='radioGroup'
                         value='optionOne'
@@ -43,6 +46,7 @@ class UnansweredQuestion extends Component {
                     </Form.Field>
                     <Form.Field>
                       <Radio
+                        data-test='unanswered-question-radio-option-two'
                         label={`${question.optionTwo.text}`}
                         name='radioGroup'
                         value='optionTwo'
@@ -52,7 +56,7 @@ class UnansweredQuestion extends Component {
                     </Form.Field>
                     <Button
                       onClick={() =>
-                        this.props.handleSubmit(question.id, this.state.value)
+                        handleSubmit(question.id, this.state.value)
                       }
                       fluid
                       basic
